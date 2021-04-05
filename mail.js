@@ -21,9 +21,17 @@ const nodemailer = require("nodemailer");
         from: mailSender,
         to: recever,
         subject: 'Here are your pictures',
-        text: "Hello, here are yout picture"
-        //text: `That was easy! ${context.bindingData.blobTrigger} & 
-        //${context.bindings.outputBlob}`
+        text: "Hello, here are yout picture",
+        attachments: [{
+            filename: 'background.jpg',
+            //chemin d'acces car "local"
+            path: images,           
+            },
+            {   
+            filename: 'thumbnail_background.jpg',
+            //contenu car il est créé dans la fonciton
+            content: thumbnail,            
+        }]
         }
     
         transporter.sendMail(mailOptions, function(info){
